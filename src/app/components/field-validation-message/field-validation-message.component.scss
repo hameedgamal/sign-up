@@ -1,0 +1,13 @@
+.state {
+  &--error{
+    color: red;
+  }
+
+  &--warning{
+    color: rgb(235, 185, 94);
+  }
+
+  &--info{
+    color: rgb(61, 61, 196);
+  }
+}
