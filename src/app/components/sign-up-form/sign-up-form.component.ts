@@ -35,7 +35,6 @@ export class SignUpFormComponent {
     this.isFormSubmitted = true;
 
     if (this.signUpForm.valid) {
-      // TODO: move to a container component
       this.userService.signUp(this.signUpForm.value).subscribe({
         next: value => console.log(value),
       });

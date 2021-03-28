@@ -1,5 +1,3 @@
-export type ValidationState = 'danger' | 'info' | 'success';
-
 export interface UserInfo {
   firstName: string;
   lastName: string;

@@ -24,15 +24,15 @@ export const crossFormPasswordValidation: ValidatorFn = (control: AbstractContro
 
 export const validationMessage: ValidationErrors = {
   firstName: {
-    required: 'First name is required!',
+    required: 'You must enter first name!',
     pattern: 'Invalid first name. should be more than 3 characters, no special characters!'
   },
   lastName: {
-    required: 'Last name is required!',
+    required: 'You must enter last name!',
     pattern: 'Invalid last name. should be more than 3 characters, no special characters!'
   },
   email: {
-    required: 'Email address is required!',
+    required: 'You must enter email address!',
     pattern: 'Invalid email address. Please enter valid email!'
   },
   password: {

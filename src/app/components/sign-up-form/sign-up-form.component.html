@@ -6,79 +6,82 @@
 
         <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
           <div class="field">
-            <label class="label" for="firstName">First name</label>
+            <label class="label" for="firstName">First name*</label>
             <div class="control">
               <input
                 required
                 type="text"
-                class="input"
                 id="firstName"
+                class="input"
+                [class.is-danger]="hasValidation('firstName')"
                 formControlName="firstName"
               />
             </div>
             <app-field-validation-message
-              *ngIf="this.hasValidation('firstName') as errors"
+              *ngIf="hasValidation('firstName') as errors"
               [message]="errors.message"
             ></app-field-validation-message>
           </div>
 
           <div class="field">
-            <label class="label" for="lastName">Last name</label>
+            <label class="label" for="lastName">Last name*</label>
             <div class="control">
               <input
                 required
                 type="text"
                 id="lastName"
                 class="input"
+                [class.is-danger]="hasValidation('lastName')"
                 formControlName="lastName"
               />
             </div>
             <app-field-validation-message
-              *ngIf="this.hasValidation('lastName') as errors"
+              *ngIf="hasValidation('lastName') as errors"
               [message]="errors.message"
             ></app-field-validation-message>
           </div>
 
           <div class="field">
-            <label class="label" for="email">Email</label>
+            <label class="label" for="email">Email*</label>
             <div class="control">
               <input
                 required
                 id="email"
                 type="email"
-                class="input is-danger"
+                class="input"
+                [class.is-danger]="hasValidation('email')"
                 formControlName="email"
               />
             </div>
+            <app-field-validation-message
+              *ngIf="hasValidation('email') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
             <p class="help has-text-grey">
               Email address e.g. 'email@example.co'
             </p>
-            <app-field-validation-message
-              *ngIf="this.hasValidation('email') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
           </div>
 
           <div class="field">
-            <label class="label" for="password">Password</label>
+            <label class="label" for="password">Password*</label>
             <div class="control">
               <input
                 required
                 class="input"
+                [class.is-danger]="hasValidation('password')"
                 id="password"
                 type="password"
-                placeholder="Password"
                 formControlName="password"
               />
             </div>
+            <app-field-validation-message
+              *ngIf="hasValidation('password') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
             <p class="help has-text-grey">
               Password (UpperCase, LowerCase, Number/SpecialChar and min 8
               Chars) Should not contain user’s first or last name.
             </p>
-            <app-field-validation-message
-              *ngIf="this.hasValidation('password') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
           </div>
 
           <div class="field">
