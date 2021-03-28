@@ -1,60 +1,95 @@
-<h1>Sign up</h1>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="column is-4 is-offset-4">
+        <p class="title">Sign up</p>
 
-<form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
-  <div class="form-group">
-    <label for="firstName">First name: </label>
-    <input
-      type="text"
-      id="firstName"
-      placeholder="First name"
-      formControlName="firstName"
-      required>
-    <app-field-validation-message
-      *ngIf="this.hasValidation('firstName')"
-      [message]="'First name is required!'"
-    ></app-field-validation-message>
-  </div>
-  <div class="form-group">
-    <label for="lastName">Last name: </label>
-    <input
-      type="text"
-      id="lastName"
-      placeholder="Last name"
-      formControlName="lastName"
-      required>
-    <app-field-validation-message
-      *ngIf="this.hasValidation('lastName')"
-      [message]="'Last name is required!'"
-    ></app-field-validation-message>
-  </div>
-  <div class="form-group">
-    <label for="email">Email: </label>
-    <input
-      type="email"
-      id="email"
-      placeholder="Email"
-      formControlName="email"
-      required>
-    <app-field-validation-message
-      *ngIf="this.hasValidation('email')"
-      [message]="'Email address is required!'"
-    ></app-field-validation-message>
-  </div>
-  <div class="form-group">
-    <label for="password">Password: </label>
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      formControlName="password"
-      required>
-    <app-field-validation-message
-      *ngIf="this.hasValidation('password')"
-      [message]="'You must enter password!'"
-    ></app-field-validation-message>
-  </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+          <div class="field">
+            <label class="label" for="firstName">First name</label>
+            <div class="control">
+              <input
+                required
+                type="text"
+                class="input"
+                id="firstName"
+                formControlName="firstName"
+              />
+            </div>
+            <app-field-validation-message
+              *ngIf="this.hasValidation('firstName') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
+          </div>
 
-  <div class="form-group">
-    <button type="submit">Sign up</button>
+          <div class="field">
+            <label class="label" for="lastName">Last name</label>
+            <div class="control">
+              <input
+                required
+                type="text"
+                id="lastName"
+                class="input"
+                formControlName="lastName"
+              />
+            </div>
+            <app-field-validation-message
+              *ngIf="this.hasValidation('lastName') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
+          </div>
+
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="control">
+              <input
+                required
+                id="email"
+                type="email"
+                class="input is-danger"
+                formControlName="email"
+              />
+            </div>
+            <p class="help has-text-grey">
+              Email address e.g. 'email@example.co'
+            </p>
+            <app-field-validation-message
+              *ngIf="this.hasValidation('email') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
+          </div>
+
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            <div class="control">
+              <input
+                required
+                class="input"
+                id="password"
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+              />
+            </div>
+            <p class="help has-text-grey">
+              Password (UpperCase, LowerCase, Number/SpecialChar and min 8
+              Chars) Should not contain user’s first or last name.
+            </p>
+            <app-field-validation-message
+              *ngIf="this.hasValidation('password') as errors"
+              [message]="errors.message"
+            ></app-field-validation-message>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button class="button is-link is-fullwidth" type="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</section>

@@ -1,15 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-type ValidationState = 'warning' | 'error' | 'info';
-
+import { ValidationState } from '../../shared';
 @Component({
   selector: 'app-field-validation-message',
   template: `
-    <div [class]="'state--' + state">
-      {{ message }}
-    </div>
+    <p [class]="'help is-' + state">{{ message }}</p>
   `,
-  styleUrls: ['./field-validation-message.component.scss']
 })
 export class FieldValidationMessageComponent {
   /**
@@ -18,8 +14,8 @@ export class FieldValidationMessageComponent {
   @Input() message = '';
 
   /**
-   * Validation state could be 'warning' | 'error' | 'info'
-   * Default value is `'error'`
+   * Validation state could be 'danger' | 'info' | 'success'
+   * Default value is `'danger'`
    */
-   @Input() state: ValidationState = 'error';
+  @Input() state: ValidationState = 'danger';
 }

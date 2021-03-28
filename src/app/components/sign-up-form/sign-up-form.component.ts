@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+
 import { UserService } from 'src/app/services/user.service';
+import {
+  crossFormPasswordValidation,
+  validationMessage,
+  validEmailPattern,
+  validNamePatter,
+  validPasswordPattern,
+} from '../../shared';
 
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.scss']
 })
 export class SignUpFormComponent {
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService) { }
 
   signUpForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
+    firstName: new FormControl('', [Validators.required, Validators.pattern(validNamePatter)]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern(validNamePatter)]),
+    email: new FormControl('', [Validators.required, Validators.pattern(validEmailPattern)]),
+    password: new FormControl('', [Validators.required, Validators.pattern(validPasswordPattern)]),
+  }, { validators: crossFormPasswordValidation });
 
   private isFormSubmitted = false;
 
@@ -35,7 +42,12 @@ export class SignUpFormComponent {
     }
   }
 
-  hasValidation(formControlName: string): boolean {
-    return this.isFormSubmitted && this.signUpForm.dirty && !!this.signUpForm.get(formControlName)?.invalid;
+  hasValidation(formControlName: string): ValidationErrors & { message: string } | null | undefined {
+    if (this.isFormSubmitted && this.signUpForm.dirty) {
+      const errors = this.signUpForm.get(formControlName)?.errors;
+      return errors ?
+        { ...errors, message: validationMessage[formControlName][Object.keys(errors)[0]] } : null;
+    }
+    return null;
   }
 }

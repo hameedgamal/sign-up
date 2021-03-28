@@ -5,8 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { FieldValidationMessageComponent } from './components/field-validation-message/field-validation-message.component';
-import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
+import { FieldValidationMessageComponent, SignUpFormComponent } from './components';
 
 @NgModule({
   declarations: [

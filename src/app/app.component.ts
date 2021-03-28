@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<app-sign-up-form></app-sign-up-form>`,
 })
 export class AppComponent {
   title = 'Sign up';
