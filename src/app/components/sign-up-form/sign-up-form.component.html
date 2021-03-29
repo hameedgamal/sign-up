@@ -1,128 +1,111 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <div class="column is-4 is-offset-4">
-        <p class="title">Sign up</p>
+<app-notification
+  [notificationState]="responseState"
+  [onClearHandler]="clearNotification"
+></app-notification>
 
-        <div class="notification is-danger" *ngIf="responseState === 'failure'">
-          <button class="delete" (click)="clearNotification(true)"></button>
-          Failed to sign up, please check your internet connect then try again.
-        </div>
+<button
+  type="button"
+  class="button is-link is-fullwidth"
+  *ngIf="responseState === 'success'"
+  (click)="createNew()"
+>
+  Create new account
+</button>
 
-        <div
-          class="notification is-success"
-          *ngIf="responseState === 'success'"
-        >
-          You have successfully created an account!
-        </div>
+<form
+  class="box"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="signUpForm"
+  *ngIf="responseState !== 'success'"
+>
+  <div class="field">
+    <label class="label" for="firstName">First name*</label>
+    <div class="control">
+      <input
+        required
+        type="text"
+        id="firstName"
+        class="input"
+        [class.is-danger]="hasValidation('firstName')"
+        formControlName="firstName"
+      />
+    </div>
+    <app-field-validation-message
+      *ngIf="hasValidation('firstName') as errors"
+      [message]="errors.message"
+    ></app-field-validation-message>
+  </div>
 
-        <button
-          type="button"
-          class="button is-link is-fullwidth"
-          *ngIf="responseState === 'success'"
-          (click)="createNew()"
-        >
-          Create new account
-        </button>
+  <div class="field">
+    <label class="label" for="lastName">Last name*</label>
+    <div class="control">
+      <input
+        required
+        type="text"
+        id="lastName"
+        class="input"
+        [class.is-danger]="hasValidation('lastName')"
+        formControlName="lastName"
+      />
+    </div>
+    <app-field-validation-message
+      *ngIf="hasValidation('lastName') as errors"
+      [message]="errors.message"
+    ></app-field-validation-message>
+  </div>
 
-        <form
-          class="box"
-          (ngSubmit)="onSubmit()"
-          [formGroup]="signUpForm"
-          *ngIf="responseState !== 'success'"
-        >
-          <div class="field">
-            <label class="label" for="firstName">First name*</label>
-            <div class="control">
-              <input
-                required
-                type="text"
-                id="firstName"
-                class="input"
-                [class.is-danger]="hasValidation('firstName')"
-                formControlName="firstName"
-              />
-            </div>
-            <app-field-validation-message
-              *ngIf="hasValidation('firstName') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
-          </div>
+  <div class="field">
+    <label class="label" for="email">Email*</label>
+    <div class="control">
+      <input
+        required
+        id="email"
+        type="email"
+        class="input"
+        [class.is-danger]="hasValidation('email')"
+        formControlName="email"
+      />
+    </div>
+    <app-field-validation-message
+      *ngIf="hasValidation('email') as errors"
+      [message]="errors.message"
+    ></app-field-validation-message>
+    <p class="help has-text-grey">
+      Email address e.g. 'email@example.co'
+    </p>
+  </div>
 
-          <div class="field">
-            <label class="label" for="lastName">Last name*</label>
-            <div class="control">
-              <input
-                required
-                type="text"
-                id="lastName"
-                class="input"
-                [class.is-danger]="hasValidation('lastName')"
-                formControlName="lastName"
-              />
-            </div>
-            <app-field-validation-message
-              *ngIf="hasValidation('lastName') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
-          </div>
+  <div class="field">
+    <label class="label" for="password">Password*</label>
+    <div class="control">
+      <input
+        required
+        class="input"
+        [class.is-danger]="hasValidation('password')"
+        id="password"
+        type="password"
+        formControlName="password"
+      />
+    </div>
+    <app-field-validation-message
+      *ngIf="hasValidation('password') as errors"
+      [message]="errors.message"
+    ></app-field-validation-message>
+    <p class="help has-text-grey">
+      Password (UpperCase, LowerCase, Number/SpecialChar and min 8
+      Chars) Should not contain user’s first or last name.
+    </p>
+  </div>
 
-          <div class="field">
-            <label class="label" for="email">Email*</label>
-            <div class="control">
-              <input
-                required
-                id="email"
-                type="email"
-                class="input"
-                [class.is-danger]="hasValidation('email')"
-                formControlName="email"
-              />
-            </div>
-            <app-field-validation-message
-              *ngIf="hasValidation('email') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
-            <p class="help has-text-grey">
-              Email address e.g. 'email@example.co'
-            </p>
-          </div>
-
-          <div class="field">
-            <label class="label" for="password">Password*</label>
-            <div class="control">
-              <input
-                required
-                class="input"
-                [class.is-danger]="hasValidation('password')"
-                id="password"
-                type="password"
-                formControlName="password"
-              />
-            </div>
-            <app-field-validation-message
-              *ngIf="hasValidation('password') as errors"
-              [message]="errors.message"
-            ></app-field-validation-message>
-            <p class="help has-text-grey">
-              Password (UpperCase, LowerCase, Number/SpecialChar and min 8
-              Chars) Should not contain user’s first or last name.
-            </p>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <button
-                type="submit"
-                class="button is-link is-fullwidth"
-                [class.is-loading]="requestState === 'processing'"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
+  <div class="field">
+    <div class="control">
+      <button
+        type="submit"
+        class="button is-link is-fullwidth"
+        [class.is-loading]="requestState === 'processing'"
+      >
+        Submit
+      </button>
     </div>
   </div>
-</section>
+</form>

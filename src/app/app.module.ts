@@ -5,13 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { FieldValidationMessageComponent, SignUpFormComponent } from './components';
+import { FieldValidationMessageComponent, SignUpFormComponent, NotificationComponent } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpFormComponent,
-    FieldValidationMessageComponent
+    FieldValidationMessageComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
