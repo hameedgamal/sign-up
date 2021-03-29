@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { finalize, take } from 'rxjs/operators';
 
 import { UserService } from 'src/app/services/user.service';
 import {
   crossFormPasswordValidation,
+  RequestState,
+  ResponseState,
   validationMessage,
   validEmailPattern,
   validNamePatter,
@@ -25,7 +28,11 @@ export class SignUpFormComponent {
     password: new FormControl('', [Validators.required, Validators.pattern(validPasswordPattern)]),
   }, { validators: crossFormPasswordValidation });
 
+  private clearNotificationTimeoutSec = 7;
   private isFormSubmitted = false;
+  requestState: RequestState = 'blank';
+  responseState: ResponseState = 'blank';
+
 
   onSubmit(): void {
     // Mark form dirty only for the first time submit button is clicked
@@ -35,9 +42,18 @@ export class SignUpFormComponent {
     this.isFormSubmitted = true;
 
     if (this.signUpForm.valid) {
-      this.userService.signUp(this.signUpForm.value).subscribe({
-        next: value => console.log(value),
-      });
+      this.requestState = 'processing';
+      this.responseState = 'blank';
+      this.userService
+        .signUp(this.signUpForm.value)
+        .pipe(
+          take(1),
+          finalize(() => this.requestState = 'done')
+        )
+        .subscribe({
+          error: this.errorHandler.bind(this),
+          next: this.successHandler.bind(this),
+        });
     }
   }
 
@@ -49,4 +65,24 @@ export class SignUpFormComponent {
     }
     return null;
   }
+
+  errorHandler(err: any): void {
+    this.responseState = 'failure';
+    this.clearNotification();
+  }
+
+  successHandler(res: any): void {
+    this.responseState = 'success';
+    this.signUpForm.reset();
+    this.clearNotification();
+  }
+
+  clearNotification(close?: boolean): void {
+    if (close) {
+      this.responseState = 'blank';
+    } else {
+      setTimeout(() => { this.responseState = 'blank'; }, this.clearNotificationTimeoutSec * 1000);
+    }
+  }
 }
+

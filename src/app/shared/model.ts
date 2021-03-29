@@ -4,3 +4,7 @@ export interface UserInfo {
   email: string;
   password: string;
 }
+
+export type RequestState = 'blank' | 'processing' | 'done';
+
+export type ResponseState = 'blank' | 'success' | 'failure';

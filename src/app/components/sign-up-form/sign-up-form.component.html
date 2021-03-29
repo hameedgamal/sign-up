@@ -4,7 +4,17 @@
       <div class="column is-4 is-offset-4">
         <p class="title">Sign up</p>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+        <div class="notification is-danger" *ngIf="responseState === 'failure'">
+          <button class="delete" (click)="clearNotification(true)"></button>
+          Failed to sign up, please check your internet connect then try again.
+        </div>
+
+        <div class="notification is-success" *ngIf="responseState === 'success'">
+          <button class="delete" (click)="clearNotification(true)"></button>
+          You have successfully created your account!
+        </div>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="box">
           <div class="field">
             <label class="label" for="firstName">First name*</label>
             <div class="control">
@@ -86,7 +96,11 @@
 
           <div class="field">
             <div class="control">
-              <button class="button is-link is-fullwidth" type="submit">
+              <button
+                type="submit"
+                class="button is-link is-fullwidth"
+                [class.is-loading]="requestState === 'processing'"
+              >
                 Submit
               </button>
             </div>
