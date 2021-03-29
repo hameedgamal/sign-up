@@ -1,16 +1,37 @@
 import { browser, logging } from 'protractor';
+
 import { AppPage } from './app.po';
+import locators from './app.locator'
+import data from './app.data'
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+describe('Sign up App', () => {
+  let page = new AppPage();
 
-  beforeEach(() => {
-    page = new AppPage();
+  beforeEach(async () => {
+    await page.navigateTo();
   });
 
-  it('should display welcome message', async () => {
-    await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('sign-up app is running!');
+  it('should display header message', async () => {
+    expect(await page.getElementText(locators.pageHeader)).toEqual('Sign up');
+  });
+
+  it('should be able to sign up', async () => {
+    await page.fillForm();
+    await page.submitForm();
+    expect(await page.isPresent(locators.successNotification)).toBe(true);
+  });
+
+  it('should not be able to sign up if required info is missing', async () => {
+    const fields = ['firstName', 'lastName', 'email', 'password'];
+
+    for (const fieldName of fields) {
+      const _fieldToFill = fields.filter(f => f !== fieldName);
+      await page.fillForm(_fieldToFill);
+      await page.submitForm();
+      const _locatorName = fieldName + 'FieldErrorMsg';
+      expect(await page.getElementText(locators[_locatorName])).toEqual(`${data[fieldName].required}`);
+      await page.navigateTo();
+    }
   });
 
   afterEach(async () => {

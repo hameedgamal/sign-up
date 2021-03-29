@@ -1,9 +1,14 @@
-<div class="notification is-danger mb-3" *ngIf="notificationState === 'failure'">
+<div
+  data-locator="failure-notification"
+  class="notification is-danger mb-3"
+  *ngIf="notificationState === 'failure'"
+>
   <button class="delete" (click)="onClear(true)"></button>
   Failed to sign up, please check your internet connect then try again.
 </div>
 
 <div
+  data-locator="success-notification"
   class="notification is-success mb-3"
   *ngIf="notificationState === 'success'"
 >

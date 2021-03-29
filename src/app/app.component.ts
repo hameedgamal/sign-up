@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
       <div class="hero-body">
         <div class="container">
           <div class="column is-4 is-offset-4">
-            <p class="title">Sign up</p>
+            <p class="title" data-locator="page-header">Sign up</p>
             <app-sign-up-form></app-sign-up-form>
           </div>
         </div>
