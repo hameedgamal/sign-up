@@ -9,12 +9,28 @@
           Failed to sign up, please check your internet connect then try again.
         </div>
 
-        <div class="notification is-success" *ngIf="responseState === 'success'">
-          <button class="delete" (click)="clearNotification(true)"></button>
-          You have successfully created your account!
+        <div
+          class="notification is-success"
+          *ngIf="responseState === 'success'"
+        >
+          You have successfully created an account!
         </div>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="box">
+        <button
+          type="button"
+          class="button is-link is-fullwidth"
+          *ngIf="responseState === 'success'"
+          (click)="createNew()"
+        >
+          Create new account
+        </button>
+
+        <form
+          class="box"
+          (ngSubmit)="onSubmit()"
+          [formGroup]="signUpForm"
+          *ngIf="responseState !== 'success'"
+        >
           <div class="field">
             <label class="label" for="firstName">First name*</label>
             <div class="control">

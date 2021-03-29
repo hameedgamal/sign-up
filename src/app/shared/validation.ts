@@ -7,10 +7,10 @@ export const validEmailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const validPasswordPattern = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
 export const crossFormPasswordValidation: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const firstName = control.get('firstName')?.value.toLocaleLowerCase();
-  const lastName = control.get('lastName')?.value.toLocaleLowerCase();
+  const firstName = control.get('firstName')?.value?.toLocaleLowerCase();
+  const lastName = control.get('lastName')?.value?.toLocaleLowerCase();
   const passwordField = control.get('password');
-  const password = passwordField?.value.toLocaleLowerCase();
+  const password = passwordField?.value?.toLocaleLowerCase();
 
   const error = password && (firstName || lastName) && (password.includes(firstName) || password.includes(lastName)) ?
     { invalidCrossFormPasswordValidation: true } : null;

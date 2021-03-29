@@ -28,7 +28,7 @@ export class SignUpFormComponent {
     password: new FormControl('', [Validators.required, Validators.pattern(validPasswordPattern)]),
   }, { validators: crossFormPasswordValidation });
 
-  private clearNotificationTimeoutSec = 7;
+  private clearNotificationTimeoutSec = 10;
   private isFormSubmitted = false;
   requestState: RequestState = 'blank';
   responseState: ResponseState = 'blank';
@@ -44,6 +44,7 @@ export class SignUpFormComponent {
     if (this.signUpForm.valid) {
       this.requestState = 'processing';
       this.responseState = 'blank';
+
       this.userService
         .signUp(this.signUpForm.value)
         .pipe(
@@ -74,7 +75,6 @@ export class SignUpFormComponent {
   successHandler(res: any): void {
     this.responseState = 'success';
     this.signUpForm.reset();
-    this.clearNotification();
   }
 
   clearNotification(close?: boolean): void {
@@ -83,6 +83,11 @@ export class SignUpFormComponent {
     } else {
       setTimeout(() => { this.responseState = 'blank'; }, this.clearNotificationTimeoutSec * 1000);
     }
+  }
+
+  createNew(): void {
+    this.clearNotification(true);
+    this.isFormSubmitted = false;
   }
 }
 
