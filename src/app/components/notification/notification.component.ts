@@ -16,10 +16,10 @@ export class NotificationComponent {
   /**
    * on clear button click handler
    */
-  @Input() onClearHandler!: (close?: boolean) => void;
+  @Input() clearHandler!: (close?: boolean) => void;
 
 
   onClear(close?: boolean): void {
-    this.onClearHandler(close);
+    this.clearHandler(close);
   }
 }
