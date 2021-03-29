@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>sign-up documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">sign-up documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="signup">SignUp</h1>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 11.2.6.</p>
+<h2 id="libraries">libraries</h2>
+<ul>
+<li>Angular 11 &amp; Angular CLI</li>
+<li>Bulma CSS framework <a href="https://bulma.io/">https://bulma.io/</a></li>
+<li>FakerJs for mocking data in integration test <a href="https://fakerjsdocs.netlify.app/">https://fakerjsdocs.netlify.app/</a></li>
+</ul>
+<h2 id="folder-structure">Folder structure</h2>
+<ul>
+<li><p>Root: e2e; Where integration test is manage</p>
+<ul>
+<li>Locators: Map for elements with <code>[data-locator]</code> attribute, that attribute is used to locate elements for test</li>
+<li>PageObject: Breaking page into objects to make it easier for accessing in spec while writing test cases</li>
+<li>Data: Map for static data, like error message, so the spec file will be clean and more focus on test flow, also easier to manage changes in static data.</li>
+<li>Specs: spec file to test the integrated components in Sign Up single page app</li>
+</ul>
+</li>
+<li><p>Root: src/app; source code for the app</p>
+<ul>
+<li>App root component: main component for the app</li>
+<li>App module: main module for the app</li>
+<li>Components:<ul>
+<li>All child components that are used in main component app</li>
+<li>All components are dumb except the <code>SignUpFormComponent</code> , that one is a smart component where the logic for calling the API is managed and all child components are render with needed inputs</li>
+</ul>
+</li>
+<li>Services:<ul>
+<li><code>UserService</code> where the API call for demoAPI is managed</li>
+</ul>
+</li>
+<li>Shared:<ul>
+<li>Validation: reactive form validation along with validation messages</li>
+<li>Models: types &amp; interfaces</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="architecture--approach">Architecture &amp; approach</h2>
+<ul>
+<li>Full adoption of Angular framework, for example using Reactive forms.</li>
+<li>Smart &amp; dumb components:<ul>
+<li>Where the business log is manage in smart components and dumb component are only for presentational layer, dumb components are <code>NotificationComponent</code>, <code>FieldValidationMessageComponent</code> and smart component is <code>SignUpFormComponent</code></li>
+<li><code>SignUpFormComponent</code> includes a presentational layer but since the application is not complex I decided to make the smart component but that can be improved</li>
+</ul>
+</li>
+<li>Using a light weigh CSS Framework &quot;Bulma&quot;<ul>
+<li>Save time to focus on application logic</li>
+<li>Zero CSS/styles</li>
+<li>responsiveness and more...</li>
+</ul>
+</li>
+<li>Unit testing: basic unit test and not covering all units</li>
+<li>E2E/Integration test, provided coverage for two scenarios<ul>
+<li>Fill all required info and submit, verify that success notification is shown</li>
+<li>Skip one required filed and verify that validation error is shown for each field with the correct message</li>
+<li>Note: test is not stable because of missing password pattern for <code>fackerJs</code> password mock method</li>
+</ul>
+</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Valid password pattern: <a href="https://www.w3resource.com/javascript/form/email-validation.php">https://www.w3resource.com/javascript/form/email-validation.php</a></li>
+<li>Valid email pattern: <a href="https://stackoverflow.com/questions/5601647/html5-email-input-pattern-attribute">https://stackoverflow.com/questions/5601647/html5-email-input-pattern-attribute</a></li>
+</ul>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="running-unit-tests">Running unit tests</h2>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h2 id="running-end-to-end-tests">Running end-to-end tests</h2>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h2 id="further-help">Further help</h2>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://angular.io/cli">Angular CLI Overview and Command Reference</a> page.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

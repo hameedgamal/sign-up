@@ -2,12 +2,49 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
-## Task Notes
+## libraries
+- Angular 11 & Angular CLI
+- Bulma CSS framework https://bulma.io/
+- FakerJs for mocking data in integration test https://fakerjsdocs.netlify.app/
 
-- Valid password pattern: https://www.html5pattern.com/Passwords
+## Folder structure
+
+- Root: e2e; Where integration test is manage
+  - Locators: Map for elements with `[data-locator]` attribute, that attribute is used to locate elements for test
+  - PageObject: Breaking page into objects to make it easier for accessing in spec while writing test cases
+  - Data: Map for static data, like error message, so the spec file will be clean and more focus on test flow, also easier to manage changes in static data.
+  - Specs: spec file to test the integrated components in Sign Up single page app
+
+- Root: src/app; source code for the app
+  - App root component: main component for the app
+  - App module: main module for the app
+  - Components:
+    - All child components that are used in main component app
+    - All components are dumb except the `SignUpFormComponent` , that one is a smart component where the logic for calling the API is managed and all child components are render with needed inputs
+  - Services:
+    - `UserService` where the API call for demoAPI is managed
+  - Shared:
+    - Validation: reactive form validation along with validation messages
+    - Models: types & interfaces
+
+## Architecture & approach
+- Full adoption of Angular framework, for example using Reactive forms.
+- Smart & dumb components:
+  - Where the business log is manage in smart components and dumb component are only for presentational layer, dumb components are `NotificationComponent`, `FieldValidationMessageComponent` and smart component is `SignUpFormComponent`
+  - `SignUpFormComponent` includes a presentational layer but since the application is not complex I decided to make the smart component but that can be improved
+- Using a light weigh CSS Framework "Bulma"
+  - Save time to focus on application logic
+  - Zero CSS/styles
+  - responsiveness and more...
+- Unit testing: basic unit test and not covering all units
+- E2E/Integration test, provided coverage for two scenarios
+  - Fill all required info and submit, verify that success notification is shown
+  - Skip one required filed and verify that validation error is shown for each field with the correct message
+  - Note: test is not stable because of missing password pattern for `fackerJs` password mock method
+
+## Resources
+- Valid password pattern: https://www.w3resource.com/javascript/form/email-validation.php
 - Valid email pattern: https://stackoverflow.com/questions/5601647/html5-email-input-pattern-attribute
-### UI
-- Using bulma UI library https://bulma.io/
 
 ## Development server
 
