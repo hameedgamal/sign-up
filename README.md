@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Angular 11 & Angular CLI
 - Bulma CSS framework https://bulma.io/
 - FakerJs for mocking data in integration test https://fakerjsdocs.netlify.app/
+- compodoc for Extract app documentation https://compodoc.app/
 
 ## Folder structure
 
@@ -41,6 +42,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - Fill all required info and submit, verify that success notification is shown
   - Skip one required filed and verify that validation error is shown for each field with the correct message
   - Note: test is not stable because of missing password pattern for `fackerJs` password mock method
+- Application documentation using compodoc, documentation is generated under `documentation/index.html`, it is a basic one but would help understanding data flow and application structure
 
 ## Resources
 - Valid password pattern: https://www.w3resource.com/javascript/form/email-validation.php
